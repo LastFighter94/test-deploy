@@ -1,28 +1,26 @@
-networks:
-  dev:
+version: "3.8"
 
 services:
-  nginx:
-    image: nginx:stable-alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - './nginx.conf:/etc/nginx/nginx.conf'
-    depends_on:
-      - backend
-      - frontend
-    networks:
-      - dev
-    
   backend:
-    build:
-      context: ./backend
-    networks:
-      - dev
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
 
   frontend:
-    build:
-      context: ./frontend
-    networks:
-      - dev
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
