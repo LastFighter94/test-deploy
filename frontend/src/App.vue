@@ -20,7 +20,7 @@ const items = ref([]);
 
 async function fetchItems() {
   try {
-    const res = await fetch("http://178.72.131.148:8000/items");
+    const res = await fetch("http://5.35.92.117/:8000/items");
     items.value = await res.json();
   } catch (err) {
     console.error("Ошибка при запросе:", err);
