@@ -21,6 +21,7 @@ const items = ref([]);
 async function fetchItems() {
   try {
     const res = await fetch("http://5.35.92.117:8000/items");
+    // const res = await fetch("http://localgost:8000/items");
     items.value = await res.json();
   } catch (err) {
     console.error("Ошибка при запросе:", err);
