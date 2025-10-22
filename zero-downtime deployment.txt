@@ -1,3 +1,9 @@
+первыый деплой
+
+docker build -t frontend_new ./frontend && docker build -t backend_new ./backend && docker run -d --name frontend1 frontend_new && docker run -d --name frontend2 frontend_new && docker run -d --name backend1 backend_new && docker run -d --name backend2 backend_new && docker run -d --name nginx -p 80:80 -v $(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf:ro --link frontend1 --link frontend2 --link backend1 --link backend2 nginx:stable-alpine
+
+контейнеры уже существуют
+
 docker build -t frontend_new ./frontend && docker build -t backend_new ./backend && docker run -d --name frontend_new frontend_new && docker run -d --name backend_new backend_new && docker stop frontend1 && docker rm frontend1 && docker rename frontend_new frontend1 && docker stop backend1 && docker rm backend1 && docker rename backend_new backend1 && docker exec nginx nginx -s reload
 
 🔹 Как работает:
