@@ -1,0 +1,17 @@
+docker build -t frontend_new ./frontend && docker build -t backend_new ./backend && docker run -d --name frontend_new frontend_new && docker run -d --name backend_new backend_new && docker stop frontend1 && docker rm frontend1 && docker rename frontend_new frontend1 && docker stop backend1 && docker rm backend1 && docker rename backend_new backend1 && docker exec nginx nginx -s reload
+
+🔹 Как работает:
+
+docker build -t frontend_new ./frontend — собираем новый фронт.
+
+docker build -t backend_new ./backend — собираем новый бэк.
+
+docker run -d --name frontend_new frontend_new — запускаем новый фронт временно.
+
+docker run -d --name backend_new backend_new — запускаем новый бэк временно.
+
+docker stop frontend1 && docker rm frontend1 && docker rename frontend_new frontend1 — заменяем старый фронт.
+
+docker stop backend1 && docker rm backend1 && docker rename backend_new backend1 — заменяем старый бэк.
+
+docker exec nginx nginx -s reload — перезагружаем Nginx, чтобы новые контейнеры начали обслуживать трафик.
