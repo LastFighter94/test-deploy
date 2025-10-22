@@ -1,6 +1,7 @@
-надо сделать .env для прода и локалки, чтобы docker-compose подхватывал именно определенный .env в зависимости от самого docker-compose и чтобы его можно было парсить в 
+1 -
+
+надо сделать .env для прода и локалки, чтобы docker-compose подхватывал именно определенный .env в зависимости от самого docker-compose и чтобы его можно было парсить в
 
 async function fetchItems() { try { const res = await fetch("http://5.35.92.117:8000/items"); // const res = await fetch("http://localgost:8000/items"); items.value = await res.json(); } catch (err) { console.error("Ошибка при запросе:", err); } на fetch
-
 
 Потом сделать так чтобы на проде пересборка контейнера не ломала действующее прод отображение и функционал
